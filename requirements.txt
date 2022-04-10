@@ -1,0 +1,7 @@
+geocoder~=1.38.1
+scapy~=2.4.5
+future~=0.18.2
+requests~=2.27.1
+beautifulsoup4~=4.9.3
+gmplot~=1.4.1
+halo~=0.0.31
