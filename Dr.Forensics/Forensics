@@ -1,1 +1,205 @@
+from scapy.all import *
 
+
+def Forensics():
+    os.system("clear")
+    menu()
+
+
+def menu():
+    print("""\033[1;31m                                                                   
+    DDDDDDD                 FFFFFFFFFF
+    DD    DD                FF
+    DD     DD               FF
+    DD      DD  RR  RR      FFFFFFFF  OOOOO   RR  RR  EEEEEE    NN NNNNN    SSSSSS   II   CCCCCC   SSSSSS 
+    DD      DD  RR RR       FF       OO   OO  RR RR  EE    EE   NN N   NN  SS            CCC      SS
+    DD     DD   RRR         FF       OO   OO  RRR    EEEEEEEE   NNN     NN  SSSSSS   II  CC        SSSSSS
+    DD    DD    RR   _____  FF       OO   OO  RR     EE         NN      NN       SS  II  CCC            SS
+    DDDDDD      RR   _____  FF        OOOOO   RR      EEEEEEE   NN      NN  SSSSSS   II   CCCCCC   SSSSSS
+                                                                                            """)
+    print("\033[1;33mThe Advanced Automated Forensics Tool")
+    print("\033[1;33mAuthor: Jagdish Patil")
+    print("\033[1;33mGithub : https://github.com/JagdishPatil2111")
+
+    choice = input("""\033[1;32m======================[METADATA ANALYSIS & DIGITAL FORENSICS]======================
+                          \033[1;34m
+    [1] Exif Data                          [8] DiskDump(Specific Partition)
+    [2] Metagoofil                         [9] DiskDump with dcfldd
+    [3] Dump Password Hash                 [10] Volatility(Memory Forensics)
+    [4] Recoverjpg                         [11] Hashdeep
+    [5] Foremost(Restore Lost Files)       [12] Dump LSA Secrets
+    [6] Autopsy                            [13] Dump Cached Credentials
+    [7] DiskDump(Entire Disk)              [14] Bulk_Extractor(Automated)
+                                            
+                        [0] Quit/Log Out
+                    Please enter your choice: """)
+
+    if choice == "1":
+        exif()
+    elif choice == "2":
+        metago()
+    elif choice == "3":
+        dump1()
+    elif choice == "4":
+        rcvJPG()
+    elif choice == "5":
+        foremost()
+    elif choice == "6":
+        autopsy()
+    elif choice == "7":
+        diskdump1()
+    elif choice == "8":
+        dk2()
+    elif choice == "9":
+        dk3()
+    elif choice == "10":
+        vola()
+    elif choice == "11":
+        hdeep()
+    elif choice == "12":
+        dump_lsa()
+    elif choice == "13":
+        dump_cc()
+    elif choice == "14":
+        bulk_ex()
+    elif choice == "0":
+        sys.exit()
+    else:
+        print("You must only select numbers that exists in this menu.")
+        print("Please try again\n\n\n")
+        menu()
+
+
+def exif():
+    os.system("clear")
+    z = input("Enter File Name/Directory:")
+    subprocess.call(["exiftool", z])
+    y = input("Do you want to check another file ? (Y/N)")
+    if y == "Y" or y == "y":
+        exif()
+    else:
+        menu()
+
+
+def metago():
+    os.system("clear")
+    os.system("xterm -hold -e apt-get install metagoofil")
+    os.system("metagoofil")
+
+
+def dump1():
+    os.system("clear")
+    x = input("Enter Hive Location:")
+    subprocess.call(["pwdump", x])
+    y = input("Do you want to Check Another Hive   ? (Y/N)")
+    if y == "Y" or y == "y":
+        dump1()
+    else:
+        menu()
+
+
+def rcvJPG():
+    os.system("clear")
+    x = input("Enter Disk (For Example /dev/sda):")
+    subprocess.call(["recoverjpeg", x])
+    y = input("Do you want to Check Another Disk   ? (Y/N)")
+    if y == "Y" or y == "y":
+        rcvJPG()
+    else:
+        menu()
+
+
+def foremost():
+    os.system("clear")
+    x = input("Enter Disk (For Example /dev/sda):")
+    subprocess.call(["foremost", "-t", "all", "-v", "-i", x, "-o", "/root/Desktop/test"])
+    y = input("Do you want to Check Another Disk For Lost Files  ? (Y/N)")
+    if y == "Y" or y == "y":
+        rcvJPG()
+    else:
+        menu()
+
+
+def autopsy():
+    os.system("clear")
+    os.system("autopsy")
+
+
+def diskdump1():
+    os.system("clear")
+    os.system("dd if=/dev/sda of=~/dump1.dd")
+    y = input("Do you want to Dump Another Disk   ? (Y/N)")
+    if y == "Y" or y == "y":
+        diskdump1()
+    else:
+        menu()
+
+
+def dk2():
+    os.system("clear")
+    print("""\033[1;31m Available Soon....""")
+    # x = input("Enter Disk (For Example /dev/sda):")
+    # subprocess.call(["dd","if="+x,"of=~/partition.img"])
+    # print(["dd","if="+x+"of=~/partition.img"])
+    y = input("Do you want to go back to main menu   ? (Y/N)")
+    if y == "Y" or y == "y":
+        menu()
+    else:
+        sys.exit()
+
+
+def dk3():
+    os.system("clear")
+    os.system("dcfldd if=/dev/sda1 hash=md5 of=/root/Desktop/image.dd bs=512")
+
+
+def vola():
+    os.system("clear")
+    os.system("volatility -h")
+
+
+def hdeep():
+    os.system("clear")
+    x = input("Enter File or Disk Location:")
+    subprocess.call(["hashdeep", "-c", "md5,sha1,sha256,tiger,whirlpool", x, "-b"])
+    y = input("Do you want to Check More  ? (Y/N)")
+    if y == "Y" or y == "y":
+        hdeep()
+    else:
+        menu()
+
+
+def dump_lsa():
+    os.system("clear")
+    x = input("Enter Disk:")
+    subprocess.call(["lsadump", x])
+    y = input("Do you want to Dump More  ? (Y/N)")
+    if y == "Y" or y == "y":
+        dump_lsa()
+    else:
+        menu()
+
+
+def dump_cc():
+    os.system("clear")
+    x = input("Enter Disk:")
+    subprocess.call(["cachedump", x])
+    y = input("Do you want to Dump More  ? (Y/N)")
+    if y == "Y" or y == "y":
+        dump_cc()
+    else:
+        menu()
+
+
+def bulk_ex():
+    os.system("clear")
+    x = input("Enter Disked Dumped File Location:")
+    subprocess.call(["bulk_extractor", "-o", "lala.txt", x])
+    y = input("Do you want to Dump More  ? (Y/N)")
+    if y == "Y" or y == "y":
+        bulk_ex()
+    else:
+        menu()
+
+
+Forensics()
