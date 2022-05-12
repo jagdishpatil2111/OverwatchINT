@@ -1,7 +1,7 @@
 from scapy.all import *
 
 
-def Forensics():
+def forensics():
     os.system("clear")
     menu()
 
