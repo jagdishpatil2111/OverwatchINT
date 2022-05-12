@@ -1,6 +1,8 @@
 from SocialInfoga.SocialInfoga import reconinput
 import WebVulture.WebVulture as wv
 from PenTest import PenTest as pt
+from Dr_Forensics import Forensics as dfir
+from Hide_n_Secure import Steganography as stg
 
 cyan = "\033[1;36;40m"
 green = "\033[1;32;40m"
@@ -15,6 +17,10 @@ def main():
         wv.main()
     elif a == 3:
         pt.main()
+    elif a == 4:
+        stg.main()
+    elif a == 5:
+        dfir.forensics()
 
 
 
