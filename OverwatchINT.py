@@ -17,6 +17,7 @@ def main():
         pt.main()
 
 
+
 if __name__ == "__main__":
     print(cyan + """
              $$$$$$                                                    $$              $$        $$$$$$  $$$    $$  $$$$$$$$
@@ -34,7 +35,7 @@ if __name__ == "__main__":
         1. Information Gathering
         2. Web Vulnerability Scanning
         3. Penetration Testing
-        4. Malware Analysis
+        4. Steganography
         5. Digital Forensics
     """)
     print(Y + "Note: In Information Gathering, type 'tools' to find tools.")
